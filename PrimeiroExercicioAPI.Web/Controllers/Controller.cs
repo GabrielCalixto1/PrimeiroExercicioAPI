@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PrimeiroExercicioAPI.Models;
 namespace PrimeiroExercicioAPI.Controllers
 {
     [ApiController]
@@ -6,72 +7,62 @@ namespace PrimeiroExercicioAPI.Controllers
 
     public class PrimeiroController : ControllerBase
     {
-        [HttpGet("ApiSoma")]
+        [HttpGet("Somar")]
         public IActionResult ApiDeSoma(double num1, double num2)
         {
-            if (num1 > 999 || num2 > 999)
+            try
             {
-                return BadRequest("Numero muito grande para conta");
+                var calculadora = new Calculadora();
+                var resultado = calculadora.Somar(num1, num2);
+                return Ok(resultado);
             }
-            else if (num1 == 0 || num2 == 0)
+            catch (System.Exception ex)
             {
-                return BadRequest("O valor não pode ser 0");
+                return BadRequest(ex.Message);
             }
-
-            return Ok(num1 + num2);
         }
 
         [HttpGet("ApiSubtracao")]
         public IActionResult ApiDeSubtracao(double num1, double num2)
         {
-            if (num1 > 999 || num2 > 999)
+            try
             {
-                return BadRequest("Numero muito grande para conta");
+                var calculadora = new Calculadora();
+                var resultado = calculadora.Somar(num1, num2);
+                return Ok(resultado);
             }
-            else if (num1 == 0 || num2 == 0)
+            catch (System.Exception ex)
             {
-                return BadRequest("O valor não pode ser 0");
+                return BadRequest(ex.Message);
             }
-
-            return Ok(num1 - num2);
         }
         [HttpGet("ApiMultiplicacao")]
         public IActionResult ApiDeMultiplicacao(double num1, double num2)
-        {
-            if (num1 > 999 || num2 > 999)
+       {
+            try
             {
-                return BadRequest("Numero muito grande para conta");
+                var calculadora = new Calculadora();
+                var resultado = calculadora.Somar(num1, num2);
+                return Ok(resultado);
             }
-            else if (num1 == 0 || num2 == 0)
+            catch (System.Exception ex)
             {
-                return BadRequest("O valor não pode ser 0");
+                return BadRequest(ex.Message);
             }
-            else if (num1 < 0 || num2 < 0)
-            {
-                return BadRequest("O valor não pode ser menor que 0");
-            }
-
-
-            return Ok(num1 * num2);
         }
         [HttpGet("ApiDivisao")]
         public IActionResult ApiDeDivisao(double num1, double num2)
-        {
-            if (num1 > 999 || num2 > 999)
+    {
+            try
             {
-                return BadRequest("Numero muito grande para conta");
+                var calculadora = new Calculadora();
+                var resultado = calculadora.Somar(num1, num2);
+                return Ok(resultado);
             }
-            else if (num1 == 0 || num2 == 0)
+            catch(System.Exception ex)
             {
-                return BadRequest("O valor não pode ser 0");
+                return BadRequest(ex.Message);
             }
-            else if (num1 < 0 || num2 < 0)
-            {
-                return BadRequest("O valor não pode ser menor que 0");
-            }
-
-            return Ok(num1 / num2);
         }
-
     }
 }

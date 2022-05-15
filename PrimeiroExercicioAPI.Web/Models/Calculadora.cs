@@ -1,92 +1,48 @@
-using Microsoft.AspNetCore.Mvc;
+using PrimeiroExercicioAPI.Web.Controllers;
 namespace PrimeiroExercicioAPI.Models
 {
-    public class Calculadora : Controller
+    public class Calculadora
     {
-        public IActionResult Somar(double num1, double num2)
+        public double Somar(double num1, double num2)
+        {
+            if (ValidarNumero(num1) && ValidarNumero(num2))
+            {
+                return num1 + num2;
+            }
+            throw new InputIncorrect("Ocorreu um erro inesperado");
+        }
+        public double Substrair(double num1, double num2)
+        {
+            if (ValidarNumero(num1) && ValidarNumero(num2))
+            {
+                return num1 - num2;
+            }
+            throw new InputIncorrect("Ocorreu um erro inesperado");
+        }
+        public double Dividir(double num1, double num2)
+        {
+            if (ValidarNumero(num1) && ValidarNumero(num2))
+            {
+                return num1 / num2;
+            }
+            throw new InputIncorrect("Ocorreu um erro inesperado");
+        }
+        public double Multiplicar(double num1, double num2)
+        {
+            if (ValidarNumero(num1) && ValidarNumero(num2))
+            {
+                return num1 * num2;
+            }
+            throw new InputIncorrect("Ocorreu um erro inesperado");
+        }
+        public bool ValidarNumero(double valor)
         {
 
-
-           if (num1 > 999 || num2 > 999)
-            {
-                return BadRequest("Numero muito grande para conta");
-            }
-            else if (num1 == 0 || num2 == 0)
-            {
-                return BadRequest("O valor não pode ser 0");
-            }
-
-            return Ok(num1 + num2);
-
+            if (valor != 0 & valor < 1000)
+                return true;
+            return false;
         }
-        public IActionResult Subtrair(double num1, double num2)
-        {
-            if (num1 > 999 || num2 > 999)
-            {
-                return BadRequest("Numero muito grande para conta");
-            }
-            else if (num1 == 0 || num2 == 0)
-            {
-                return BadRequest("O valor não pode ser 0");
-            }
-
-            return Ok(num1 - num2);
-        }
-        public IActionResult Multiplicar(double num1, double num2)
-        {
-            if (num1 > 999 || num2 > 999)
-            {
-                return BadRequest("Numero muito grande para conta");
-            }
-            else if (num1 == 0 || num2 == 0)
-            {
-                return BadRequest("O valor não pode ser 0");
-            }
-            else if (num1 < 0 || num2 < 0)
-            {
-                return BadRequest("O valor não pode ser menor que 0");
-            }
-
-
-            return Ok(num1 * num2);
-        }
-        public IActionResult Dividir(double num1, double num2)
-        {
-
-            return Ok(num1 / num2);
-        }
-        private bool NumeroDeveSerMenosDeMil(double num1, double num2)
-        {
-            bool resultado = true;
-            if (num1 > 999 || num2 > 999)
-            {
-                return resultado = false;
-            }
-            return resultado;
-        }
-
-
-        private bool NumeroNaoPodeSerZero(double num1, double num2)
-        {
-            bool resultado = true;
-            if (num1 == 0 || num2 == 0)
-            {
-                return resultado = false;
-            }
-            return resultado;
-        }
-        private bool NumeroDeveSerMaiorQueZero(double num1, double num2)
-
-        {
-            bool resultado = true;
-            if (num1 < 0 || num2 < 0)
-            {
-                return resultado = false;
-            }
-            return resultado;
-
-        }
-
-
     }
+
 }
+
